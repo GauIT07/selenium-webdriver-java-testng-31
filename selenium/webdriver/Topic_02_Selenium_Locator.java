@@ -49,49 +49,87 @@ public class Topic_02_Selenium_Locator {
 
     @Test
     public void TC_01_ID(){
-        driver.findElement(By.("FirstName"))
-
+        driver.findElement(By.id("FirstName"));
     }
 
     @Test
     public void TC_02_Class(){
+        driver.findElement(By.className("header-logo"));
 
     }
 
     @Test
     public void TC_03_Name(){
-
+        driver.findElement(By.name("DateOfBirthDay"));
     }
 
 
     @Test
-    public void TC_04_LinkText(){
-
+    public void TC_04_Tagname(){
+        driver.findElements(By.tagName("input"));
     }
 
 
     @Test
-    public void TC_05_Partial_LinkText(){
-
+    public void TC_05_LinkText(){
+        driver.findElement(By.linkText("Shipping & returns"));
     }
 
 
     @Test
-    public void TC_06_Tagname(){
-
+    public void TC_06_Partial_LinkText(){
+        driver.findElement(By.partialLinkText("vendor account"));
     }
 
 
     @Test
     public void TC_07_CSS(){
+        //CSS vs ID
+        driver.findElement(By.cssSelector("input[id='LastName']"));
+        driver.findElement(By.cssSelector("input#LastName"));
+        driver.findElement(By.cssSelector("#LastName"));
 
+        //CSS vs class
+        driver.findElement(By.cssSelector("div[class='page-title']"));
+        driver.findElement(By.cssSelector("div.page-title"));
+        driver.findElement(By.cssSelector(".page-title"));
+
+        //CSS vs Tagname
+        driver.findElement(By.cssSelector("input"));
+
+        //CSS vs LinkText
+        driver.findElement(By.cssSelector("a[href='/customer/addresses']"));
+
+        //CSS vs Partial LinkText
+        // lấy giữa *
+        driver.findElement(By.cssSelector("a[href*='address']"));
+        // lấy đầu ^
+        // driver.findElement(By.cssSelector("a[href^='address']"));
+        // lấy đuôi $
+        // driver.findElement(By.cssSelector("a[href$='address']"));
     }
-
 
     @Test
     public void TC_08_Xpath(){
+        //Xpath vs ID
+        driver.findElement(By.xpath("//input[@id='LastName']"));
+
+        //Xpath vs class
+        driver.findElement(By.xpath("//div[@class='page-title']"));
+
+        //Xpath vs Tagname
+        driver.findElement(By.xpath("//input"));
+
+        //Xpath vs LinkText
+        driver.findElement(By.xpath("//a[@href='/customer/addresses']"));
+        driver.findElement(By.xpath("//a[text()='Addresses']"));
+
+        //Xpath vs Partial LinkText
+        driver.findElement(By.xpath("//a[contains(@href,'addresses')]"));
+        driver.findElement(By.xpath("//a[contains(text(),'Addresses')]"));
 
     }
+
     @AfterClass
     public void afterClass(){
         driver.quit();
