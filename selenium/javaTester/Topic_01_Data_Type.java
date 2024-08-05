@@ -1,7 +1,14 @@
 package javaTester;
 
 public class Topic_01_Data_Type {
-    // kiểu dữ liệu nguyên thủy
+    /*
+     kiểu dữ liệu nguyên thủy (Primitive Type)
+     8 loại
+     Số nguyên: byte - short - int - long
+s 
+    */
+
+
     int iNumber = 5;
 
     byte bNumber = 1;
@@ -12,8 +19,7 @@ public class Topic_01_Data_Type {
 
     char c = 'M';
 
-    // kiểu dữ liệu tham chiếu
-
+    // kiểu dữ liệu tham chiếu Reference Type
     String str = "Automation";
 
 
