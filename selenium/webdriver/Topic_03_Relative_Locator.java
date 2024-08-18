@@ -1,14 +1,16 @@
 package webdriver;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.locators.RelativeLocator;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class Topic_04_Relative_Locator {
+public class Topic_03_Relative_Locator {
     WebDriver driver;
 
     @BeforeClass
@@ -22,7 +24,7 @@ public class Topic_04_Relative_Locator {
     }
     @Test
     public void TC_01(){
-
+        driver.findElement(RelativeLocator.with())
     }
 
     @Test

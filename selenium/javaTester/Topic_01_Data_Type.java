@@ -20,6 +20,10 @@ s
     char c = 'M';
 
     // kiểu dữ liệu tham chiếu Reference Type
+
+    // Khai bao 1 bien de luu tru 1 loai du lieu nào do 
+
+    //
     String str = "Automation";
 
 
