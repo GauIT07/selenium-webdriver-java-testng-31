@@ -2,6 +2,7 @@ package webdriver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
@@ -50,7 +51,9 @@ public class Topic_02_Selenium_Locator {
 
     @Test
     public void TC_01_ID(){
+        // Tìm element có id = FirstName
         driver.findElement(By.id("FirstName"));
+        System.out.println(driver.findElement(By.id("FirstName")));
     }
 
     @Test
