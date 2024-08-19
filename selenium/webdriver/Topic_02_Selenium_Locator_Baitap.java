@@ -19,9 +19,8 @@ public class Topic_02_Selenium_Locator_Baitap {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get("https://alada.vn/tai-khoan/dang-ky.html");
-
-        driver.manage().window().maximize();
     }
+
     @Test
     public void TC_01(){
         driver.findElement(By.xpath("//button[@class='btn_pink_sm fs16']")).click();

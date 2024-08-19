@@ -21,9 +21,8 @@ public class Topic_03_Relative_Locator {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get("https://demo.nopcommerce.com/login?returnUrl=%2F");
-
-        driver.manage().window().maximize();
     }
+
     @Test
     public void TC_01_Relative_Locator(){
 

@@ -21,7 +21,6 @@ public class Topic_02_Selenium_Locator {
         driver.manage().window().maximize();
         driver.get("https://demo.nopcommerce.com/register");
 
-        driver.manage().window().maximize();
     }
     // Selenium 1.x / 2.x / 3.x / 4.x
     // 8 loai Locator

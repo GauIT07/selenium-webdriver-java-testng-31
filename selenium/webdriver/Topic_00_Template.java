@@ -18,7 +18,6 @@ public class Topic_00_Template {
         driver.manage().window().maximize();
         driver.get("https://www.facebook.com");
 
-        driver.manage().window().maximize();
     }
     @Test
     public void TC_01(){
