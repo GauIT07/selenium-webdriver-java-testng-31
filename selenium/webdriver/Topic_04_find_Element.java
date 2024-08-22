@@ -12,6 +12,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Topic_04_find_Element {
     WebDriver driver;
+    String username;
+    String password;
 
     @BeforeClass
     public void beforeClass() {
@@ -63,7 +65,20 @@ public class Topic_04_find_Element {
     }
 
     @Test
-    public void TC_03(){
+    public void TC_03_Register(){
+        driver.get("https://demo.guru99.com");
+        driver.findElement(By.name("emailid")).sendKeys("test@gmail.com");
+        driver.findElement(By.name("btnLogin")).click();
+        username = driver.findElement(By.xpath("//td[text()='User ID :']/following-sibling::td")).getText();
+        password = driver.findElement(By.xpath("//td[text()='Password :']/following-sibling::td")).getText();
+    }
+
+    @Test
+    public void TC_04_Login(){
+        driver.get("https://demo.guru99.com/v4");
+        driver.findElement(By.name("uid")).sendKeys(username);
+        driver.findElement(By.name("password")).sendKeys(password);
+        driver.findElement(By.xpath("//input[@value='LOGIN']")).click();
 
     }
 
