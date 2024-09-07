@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class Topic_04_find_Element {
+public class Topic_04_Xpath_CSS {
     WebDriver driver;
     String username;
     String password;
