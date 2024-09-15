@@ -159,7 +159,7 @@ public class Topic_06_Web_Browser_Command {
 
         String homepageWindowID = driver.getWindowHandle();
         driver.switchTo().window(homepageWindowID);
-        driver.switchTo().newWindow();
+       // driver.switchTo().newWindow();
 
         // Switch/ handle fram (iframe)
         // Index / ID (name) / Element
