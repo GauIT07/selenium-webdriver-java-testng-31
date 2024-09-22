@@ -75,7 +75,7 @@ public class Topic_02_Selenium_Locator {
 
     @Test
     public void TC_05_LinkText(){
-        driver.findElement(By.linkText("Shipping & returns"));
+        driver.findElement(By.linkText("Instagram"));
     }
 
 

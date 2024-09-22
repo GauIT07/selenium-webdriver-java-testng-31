@@ -84,21 +84,26 @@ public class Topic_08_Textbox_TextArea_BT {
         driver.findElement(By.xpath("//a[text()='Add Employee']")).click();
         sleepInSecond(2);
 
-        driver.findElement(By.cssSelector("input[name='firstName']")).sendKeys("Automnation");
-        driver.findElement(By.cssSelector("input[name='middleName']")).sendKeys("FC");
-        driver.findElement(By.cssSelector("input[name='lastName']")).sendKeys("123");
+        String firstName = "Automation", middleName = "FC", lastName = "123";
+        String userName = getUsename();
+        String password = "Auto@12345";
+        driver.findElement(By.cssSelector("input[name='firstName']")).sendKeys(firstName);
+        driver.findElement(By.cssSelector("input[name='middleName']")).sendKeys(middleName);
+        driver.findElement(By.cssSelector("input[name='lastName']")).sendKeys(lastName);
         driver.findElement(By.xpath("//label[text()='Employee Id']/parent::div/following-sibling::div/input")).sendKeys("12345");
+        String employeeId = driver.findElement(By.xpath("//label[text()='Employee Id']/parent::div/following-sibling::div/input")).getAttribute("value");
         driver.findElement(By.xpath("//p[text()='Create Login Details']/following-sibling::div//span")).click();
-        driver.findElement(By.xpath("//label[text()='Username']/parent::div/following-sibling::div/input")).sendKeys("AutoFC");
-        driver.findElement(By.xpath("//label[text()='Password']/parent::div/following-sibling::div/input")).sendKeys("Auto@12345");
-        driver.findElement(By.xpath("//label[text()='Confirm Password']/parent::div/following-sibling::div/input")).sendKeys("Auto@12345");
+        sleepInSecond(2);
+        driver.findElement(By.xpath("//label[text()='Username']/parent::div/following-sibling::div/input")).sendKeys(userName);
+        driver.findElement(By.xpath("//label[text()='Password']/parent::div/following-sibling::div/input")).sendKeys(password);
+        driver.findElement(By.xpath("//label[text()='Confirm Password']/parent::div/following-sibling::div/input")).sendKeys(password);
         driver.findElement(By.cssSelector("button[type='submit']")).click();
         sleepInSecond(2);
 
-        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='firstName']")).getText(), "Automnation");
-        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='middleName']")).getText(), "FC");
-        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='lastName']")).getText(), "123");
-        Assert.assertEquals(driver.findElement(By.xpath("//label[text()='Employee Id']/parent::div/following-sibling::div/input")).getText(), "039312345");
+        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='firstName']")).getAttribute("value"), firstName);
+        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='middleName']")).getAttribute("value"), middleName);
+        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='lastName']")).getAttribute("value"), lastName);
+        Assert.assertEquals(driver.findElement(By.xpath("//label[text()='Employee Id']/parent::div/following-sibling::div/input")).getAttribute("value"), employeeId);
 
         driver.findElement(By.xpath("//a[text()='Immigration']")).click();
         sleepInSecond(2);
@@ -106,12 +111,25 @@ public class Topic_08_Textbox_TextArea_BT {
         driver.findElement(By.xpath("//h6[text()='Assigned Immigration Records']/following-sibling::button")).click();
         sleepInSecond(2);
 
-        driver.findElement(By.xpath("//label[text()='Number']/parent::div/following-sibling::div/input")).sendKeys("123456789");
-        driver.findElement(By.xpath("//label[text()='Comments']/parent::div/following-sibling::div/textarea")).sendKeys("Automation FC");
+        String numberComment = "123456789";
+        String comment = "Automation FC";
+        driver.findElement(By.xpath("//label[text()='Number']/parent::div/following-sibling::div/input")).sendKeys(numberComment);
+        driver.findElement(By.xpath("//label[text()='Comments']/parent::div/following-sibling::div/textarea")).sendKeys(comment);
         driver.findElement(By.cssSelector("button[type=submit]")).click();
         sleepInSecond(5);
 
+        driver.findElement(By.cssSelector("i.bi-pencil-fill")).click();
+        Assert.assertEquals(driver.findElement(By.xpath("//label[text()='Number']/parent::div/following-sibling::div/input")).getAttribute("value"), numberComment);
+        Assert.assertEquals(driver.findElement(By.xpath("//label[text()='Comments']/parent::div/following-sibling::div/textarea")).getAttribute("value"), comment);
+        sleepInSecond(2);
 
+        driver.findElement(By.cssSelector("li.oxd-userdropdown")).click();
+        driver.findElement(By.xpath("//a[text()='Logout']")).click();
+
+        driver.findElement(By.cssSelector("input[name='username']")).sendKeys(userName);
+        driver.findElement(By.cssSelector("input[name='password']")).sendKeys(password);
+        driver.findElement(By.cssSelector("button[type='submit']")).click();
+        sleepInSecond(2);
     }
 
     @Test
@@ -138,7 +156,18 @@ public class Topic_08_Textbox_TextArea_BT {
         // return emailAddress;
 
         Random rand = new Random();
-        return "automation" + rand.nextInt(99999) + "@gmail.net";
+        return "Automation" + rand.nextInt(99999) + "@gmail.net";
+
+        // return "automation" + new Random().nextInt(99999) + "@gmail.net";
+    }
+
+    public String getUsename() {
+        // Random rand = new Random();
+        // String emailAddress = "automation" + rand.nextInt(99999) + "@gmail.net"
+        // return emailAddress;
+
+        Random rand = new Random();
+        return "Auto" + rand.nextInt(99999);
 
         // return "automation" + new Random().nextInt(99999) + "@gmail.net";
     }

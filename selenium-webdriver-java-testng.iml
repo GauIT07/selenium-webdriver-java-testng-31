@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="selenium-testng" level="project" />
     <orderEntry type="library" name="selenium-api-4.22.0-sources" level="project" />
+    <orderEntry type="library" name="selenium-server-4.24.0" level="project" />
   </component>
 </module>
