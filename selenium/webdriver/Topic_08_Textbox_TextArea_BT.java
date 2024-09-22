@@ -119,21 +119,120 @@ public class Topic_08_Textbox_TextArea_BT {
         sleepInSecond(5);
 
         driver.findElement(By.cssSelector("i.bi-pencil-fill")).click();
+        sleepInSecond(3);
         Assert.assertEquals(driver.findElement(By.xpath("//label[text()='Number']/parent::div/following-sibling::div/input")).getAttribute("value"), numberComment);
         Assert.assertEquals(driver.findElement(By.xpath("//label[text()='Comments']/parent::div/following-sibling::div/textarea")).getAttribute("value"), comment);
-        sleepInSecond(2);
+
 
         driver.findElement(By.cssSelector("li.oxd-userdropdown")).click();
         driver.findElement(By.xpath("//a[text()='Logout']")).click();
+        sleepInSecond(2);
 
         driver.findElement(By.cssSelector("input[name='username']")).sendKeys(userName);
         driver.findElement(By.cssSelector("input[name='password']")).sendKeys(password);
         driver.findElement(By.cssSelector("button[type='submit']")).click();
         sleepInSecond(2);
+
+        driver.findElement(By.xpath("//span[text()='My Info']")).click();
+        sleepInSecond(2);
+        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='firstName']")).getAttribute("value"), firstName);
+        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='middleName']")).getAttribute("value"), middleName);
+        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='lastName']")).getAttribute("value"), lastName);
+        Assert.assertEquals(driver.findElement(By.xpath("//label[text()='Employee Id']/parent::div/following-sibling::div/input")).getAttribute("value"), employeeId);
+
+        driver.findElement(By.xpath("//a[text()='Immigration']")).click();
+        sleepInSecond(2);
+
+        driver.findElement(By.cssSelector("i.bi-pencil-fill")).click();
+        sleepInSecond(3);
+        Assert.assertEquals(driver.findElement(By.xpath("//label[text()='Number']/parent::div/following-sibling::div/input")).getAttribute("value"), numberComment);
+        Assert.assertEquals(driver.findElement(By.xpath("//label[text()='Comments']/parent::div/following-sibling::div/textarea")).getAttribute("value"), comment);
+
     }
 
+
     @Test
-    public void TC_03() {
+    public void TC_03_TextArea_Textbox() {
+        // Tạo tài khoản
+        driver.get("https://demo.guru99.com");
+        String emailAddress = getEmailAddress();
+        driver.findElement(By.cssSelector("input[name='emailid']")).sendKeys(emailAddress);
+        driver.findElement(By.cssSelector("input[name='btnLogin']")).click();
+
+        // Lấy tài khoản UserID và password
+        String userID = driver.findElement(By.xpath("//td[text()='User ID :']/following-sibling::td")).getText();
+        String password = driver.findElement(By.xpath("//td[text()='Password :']/following-sibling::td")).getText();
+
+        // Login
+        driver.get("https://demo.guru99.com/v4/");
+        sleepInSecond(2);
+        driver.findElement(By.cssSelector("input[name='uid']")).sendKeys(userID);
+        driver.findElement(By.cssSelector("input[name='password']")).sendKeys(password);
+        driver.findElement(By.cssSelector("input[name='btnLogin']")).click();
+        sleepInSecond(2);
+        Assert.assertEquals(driver.getCurrentUrl(),"https://demo.guru99.com/v4/manager/Managerhomepage.php");
+
+        driver.findElement(By.xpath("//a[text()='New Customer']")).click();
+        sleepInSecond(2);
+
+        String customerName = "AutomationFC", dob = "2000-01-01", address = "Auto Street",
+                city = "HCM City", state = "VN", pin = "123456", mobileNumber = getPhonenumber(),
+                emailCustomer = getEmailAddress(), pass = "Auto@12345";
+
+        driver.findElement(By.cssSelector("input[name='name']")).sendKeys(customerName);
+        driver.findElement(By.cssSelector("input[value='m']")).click();
+        driver.findElement(By.cssSelector("input#dob")).sendKeys(dob);
+        driver.findElement(By.cssSelector("textarea[name='addr']")).sendKeys(address);
+        driver.findElement(By.cssSelector("input[name='city']")).sendKeys(city);
+        driver.findElement(By.cssSelector("input[name='state']")).sendKeys(state);
+        driver.findElement(By.cssSelector("input[name='pinno']")).sendKeys(pin);
+        driver.findElement(By.cssSelector("input[name='telephoneno']")).sendKeys(mobileNumber);
+        driver.findElement(By.cssSelector("input[name='emailid']")).sendKeys(emailCustomer);
+        driver.findElement(By.cssSelector("input[name='password']")).sendKeys(pass);
+        driver.findElement(By.cssSelector("input[name='sub']")).click();
+        sleepInSecond(2);
+
+        // verify CustomerID info
+        String customerID = driver.findElement(By.xpath("//td[text()='Customer ID']/following-sibling::td")).getText();
+        Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Customer ID']/following-sibling::td")).getText(), customerID);
+
+        Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Customer Name']/following-sibling::td")).getText(), customerName);
+        Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Gender']/following-sibling::td")).getText(), "male");
+        Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Birthdate']/following-sibling::td")).getText(), dob);
+        Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Address']/following-sibling::td")).getText(), address);
+        Assert.assertEquals(driver.findElement(By.xpath("//td[text()='City']/following-sibling::td")).getText(), city);
+        Assert.assertEquals(driver.findElement(By.xpath("//td[text()='State']/following-sibling::td")).getText(), state);
+        Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Pin']/following-sibling::td")).getText(), pin);
+        Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Mobile No.']/following-sibling::td")).getText(), mobileNumber);
+        Assert.assertEquals(driver.findElement(By.xpath("//td[text()='Email']/following-sibling::td")).getText(), emailCustomer);
+
+        driver.findElement(By.xpath("//a[text()='Edit Customer']")).click();
+        sleepInSecond(2);
+
+        driver.findElement(By.cssSelector("input[name='cusid']")).sendKeys(customerID);
+        driver.findElement(By.cssSelector("input[name='AccSubmit']")).click();
+        sleepInSecond(2);
+
+        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='name']")).getAttribute("value"), customerName);
+        Assert.assertEquals(driver.findElement(By.cssSelector("textarea[name='addr']")).getText(), address);
+
+        String editAddress = "123 Street D7", editCity = "ThuDuc City", editState = "HCM City", editPin = "001001",
+                editMobileNumber = getPhonenumber(), editEmailCustomer = getEmailAddress();
+        driver.findElement(By.cssSelector("textarea[name='addr']")).clear();
+        driver.findElement(By.cssSelector("textarea[name='addr']")).sendKeys(editAddress);
+        driver.findElement(By.cssSelector("input[name='city']")).clear();
+        driver.findElement(By.cssSelector("input[name='city']")).sendKeys(editCity);
+        driver.findElement(By.cssSelector("input[name='state']")).clear();
+        driver.findElement(By.cssSelector("input[name='state']")).sendKeys(editState);
+        driver.findElement(By.cssSelector("input[name='pinno']")).clear();
+        driver.findElement(By.cssSelector("input[name='pinno']")).sendKeys(editPin);
+        driver.findElement(By.cssSelector("input[name='telephoneno']")).clear();
+        driver.findElement(By.cssSelector("input[name='telephoneno']")).sendKeys(editMobileNumber);
+        driver.findElement(By.cssSelector("input[name='emailid']")).clear();
+        driver.findElement(By.cssSelector("input[name='emailid']")).sendKeys(editEmailCustomer);
+        driver.findElement(By.cssSelector("input[name='sub']")).click();
+
+
 
     }
 
@@ -162,14 +261,13 @@ public class Topic_08_Textbox_TextArea_BT {
     }
 
     public String getUsename() {
-        // Random rand = new Random();
-        // String emailAddress = "automation" + rand.nextInt(99999) + "@gmail.net"
-        // return emailAddress;
-
         Random rand = new Random();
         return "Auto" + rand.nextInt(99999);
+    }
 
-        // return "automation" + new Random().nextInt(99999) + "@gmail.net";
+    public String getPhonenumber() {
+        Random rand = new Random();
+        return "090" + rand.nextInt(1000000,9999999);
     }
 }
 
