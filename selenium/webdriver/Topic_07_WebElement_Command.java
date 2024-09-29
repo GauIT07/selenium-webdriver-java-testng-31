@@ -100,7 +100,7 @@ public class Topic_07_WebElement_Command {
         driver.findElement(By.id("")).getAttribute("id");
 
 
-        // Tab Accessibility / Properties -> Devtools - Element
+        // Lấy giá trị DOM từ tab Accessibility / Properties -> Devtools - Element
         driver.findElement(By.id("")).getAccessibleName();
         driver.findElement(By.id("")).getDomAttribute("checked");
         driver.findElement(By.id("")).getDomProperty("baseURI");
@@ -113,6 +113,7 @@ public class Topic_07_WebElement_Command {
 
 
         // Location (Vị trí) của element so vs độ phân giải màn hình
+        // tọa độ x, y so với rìa màn hình trên browser
         Point nameTextLocation = driver.findElement(By.id("")).getLocation();
         nameTextLocation.getX();
         nameTextLocation.getY();
@@ -121,6 +122,7 @@ public class Topic_07_WebElement_Command {
         Dimension addressSize = driver.findElement(By.id("")).getSize();
 
         // Location + Size
+        // tọa độ x, y với rìa màn hình trên browser và chiều rộng, chiều cao của element trên giao diện
         Rectangle nameTextboxRect = driver.findElement(By.id("")).getRect();
         nameTextboxRect.getX();
         nameTextboxRect.getY();
