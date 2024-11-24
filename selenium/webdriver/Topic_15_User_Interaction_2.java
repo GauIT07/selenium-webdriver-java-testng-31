@@ -84,10 +84,12 @@ public class Topic_15_User_Interaction_2 {
     public void TC_03_Double_Click() {
         driver.get("https://automationfc.github.io/basic-form/index.html");
 
-        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,3700)");
+        By dbClickButton = By.xpath("//button[text()='Double click me']");
+
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(dbClickButton));
         sleepInSecond(2);
 
-        action.doubleClick(driver.findElement(By.xpath("//button[text()='Double click me']"))).perform();
+        action.doubleClick(driver.findElement(dbClickButton)).perform();
         sleepInSecond(1);
 
         Assert.assertEquals(driver.findElement(By.cssSelector("p#demo")).getText(), "Hello Automation Guys!");
@@ -98,6 +100,22 @@ public class Topic_15_User_Interaction_2 {
         driver.get("https://swisnl.github.io/jQuery-contextMenu/demo.html");
 
         action.contextClick(driver.findElement(By.xpath("//span[text()='right click me']"))).perform();
+
+        By quitContextBy = By.cssSelector("li.context-menu-icon-quit");
+
+        Assert.assertTrue(driver.findElement(quitContextBy).isDisplayed());
+
+        action.moveToElement(driver.findElement(quitContextBy)).perform();
+
+        Assert.assertTrue(driver.findElement(By.cssSelector("li.context-menu-icon-quit.context-menu-hover.context-menu-visible")).isDisplayed());
+
+        action.click(driver.findElement(quitContextBy)).perform();
+        sleepInSecond(2);
+
+        driver.switchTo().alert().accept();
+        sleepInSecond(2);
+
+        Assert.assertFalse(driver.findElement(quitContextBy).isDisplayed());
 
     }
 
