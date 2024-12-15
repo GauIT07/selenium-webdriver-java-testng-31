@@ -10,5 +10,7 @@
     <orderEntry type="library" name="selenium-testng" level="project" />
     <orderEntry type="library" name="selenium-api-4.22.0-sources" level="project" />
     <orderEntry type="library" name="selenium-server-4.24.0" level="project" />
+    <orderEntry type="library" name="selenium-server-4.24.0" level="project" />
+    <orderEntry type="library" name="commons-codec-1.17.1" level="project" />
   </component>
 </module>
