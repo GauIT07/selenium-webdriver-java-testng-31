@@ -65,8 +65,10 @@ public class Topic_08_WebElement__Exercise_2 {
     }
 
     @Test
-    public void TC_04_Login_with_incorrect_Email_and_Password(){
-        driver.get("https://live.techpanda.org/");
+    public void TC_04_Login_with_incorrect_Email_and_Password() throws InterruptedException {
+        //driver.get("https://live.techpanda.org/");
+
+        driver.get("http://live.techpanda.org/");
 
         driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']")).click();
 
@@ -74,7 +76,11 @@ public class Topic_08_WebElement__Exercise_2 {
 
         driver.findElement(By.cssSelector("input#pass")).sendKeys("123123123");
 
+
         driver.findElement(By.cssSelector("button#send2")).click();
+        //Thread.sleep(2000);
+
+        //driver.switchTo().alert().accept();
 
         Assert.assertEquals(driver.findElement(By.cssSelector("li.error-msg span")).getText(), "Invalid login or password.");
 
