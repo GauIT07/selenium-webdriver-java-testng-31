@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class Topic_00_Template {
+public class Topic_22_JavascriptExecutor {
     WebDriver driver;
 
     @BeforeClass
