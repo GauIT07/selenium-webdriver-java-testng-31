@@ -1,6 +1,7 @@
 package webdriver_31;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -16,7 +17,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Topic_12_Button_Checkbox_Radio {
+public class Topic_13_Default_Checkbox_Radio {
     WebDriver driver;
 
     @BeforeClass
@@ -28,35 +29,13 @@ public class Topic_12_Button_Checkbox_Radio {
     }
 
     @Test
-    public void TC_01_Button() {
-        driver.get("https://www.fahasa.com/customer/account/create");
-        driver.findElement(By.cssSelector("li.popup-login-tab-login")).click();
-        By loginButton = By.cssSelector("button.fhs-btn-login");
-        Assert.assertFalse(driver.findElement(loginButton).isEnabled());
-
-        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(driver.findElement(loginButton))));
-
-        //driver.findElement(loginButton).getCssValue("background-color");
-        String loginButtonDisableColor = Color.fromString(driver.findElement(loginButton).getCssValue("background-color")).asHex().toUpperCase();
-        System.out.println(loginButtonDisableColor);
-        Assert.assertEquals(loginButtonDisableColor, "#000000");
-
-        driver.findElement(By.cssSelector("input#login_username")).sendKeys("testing@gmail.com");
-        driver.findElement(By.cssSelector("input#login_password")).sendKeys("123456");
-        Assert.assertTrue(driver.findElement(loginButton).isEnabled());
-        String loginButtonEnableColor = Color.fromString(driver.findElement(loginButton).getCssValue("background-color")).asHex().toUpperCase();
-        System.out.println(loginButtonEnableColor);
-        Assert.assertEquals(loginButtonEnableColor, "#C92127");
-
-    }
-
-    @Test
-    public void TC_02_Default_Checkbox_Radio() {
+    public void TC_01_Default_Checkbox_Radio() {
         driver.get("https://demos.telerik.com/kendo-ui/checkbox/index");
 
         By dualZoneCheckbox = By.xpath("//label[text()='Dual-zone air conditioning']/preceding-sibling::span/input");
         By twoPetrol147kW = By.xpath("//label[text()='2.0 Petrol, 147kW']/preceding-sibling::span/input");
 
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("//div[@id='demo-runner']")));
         driver.findElement(dualZoneCheckbox).click();
         Assert.assertTrue(driver.findElement(dualZoneCheckbox).isSelected());
 
@@ -72,7 +51,7 @@ public class Topic_12_Button_Checkbox_Radio {
     }
 
     @Test
-    public void TC_03_Default_Checkbox_Radio() throws InterruptedException {
+    public void TC_02_Default_Checkbox_Radio() throws InterruptedException {
         driver.get("https://material.angular.io/components/radio/examples");
         if (!driver.findElement(By.cssSelector("input[value='Summer']")).isSelected()) {
             driver.findElement(By.cssSelector("input[value='Summer']")).click();
@@ -94,7 +73,7 @@ public class Topic_12_Button_Checkbox_Radio {
     }
 
     @Test
-    public void TC_04_Default_Checkbox_Radio() throws InterruptedException {
+    public void TC_03_Default_Checkbox_Radio() throws InterruptedException {
         driver.get("https://automationfc.github.io/multiple-fields/");
         By allCheckboxes = By.cssSelector("div.form-single-column span.form-checkbox-item input");
         List<WebElement> allCheckboxesValue = driver.findElements(allCheckboxes);
@@ -116,8 +95,15 @@ public class Topic_12_Button_Checkbox_Radio {
         }
 
         for(WebElement checkbox : allCheckboxesValue){
-            if(checkbox.getAttribute("value").equals("Heart Attack")){
+            if(checkbox.getAttribute("value").equals("Heart Attack") && !checkbox.isSelected()){
                 checkbox.click();
+                Thread.sleep(2000);
+            }
+        }
+
+        for(WebElement checkbox : allCheckboxesValue){
+            if(checkbox.getAttribute("value").equals("Heart Attack") ){
+                Assert.assertTrue(checkbox.isSelected());
                 Thread.sleep(2000);
             }
         }

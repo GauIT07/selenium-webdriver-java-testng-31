@@ -8,33 +8,35 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class Topic_00_Template {
+public class Topic_14_Custom_Checkbox_Radio {
     WebDriver driver;
 
     @BeforeClass
-    public void initialBrowser() {
+    public void beforeClass() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
     }
+
     @Test
-    public void TC_01(){
+    public void TC_01() {
+        driver.get("https://login.ubuntu.com/");
 
     }
 
     @Test
-    public void TC_02(){
+    public void TC_02() {
 
     }
 
     @Test
-    public void TC_03(){
+    public void TC_03() {
 
     }
 
     @AfterClass
-    public void cleanBrowser(){
+    public void afterClass() {
         driver.quit();
     }
 }
