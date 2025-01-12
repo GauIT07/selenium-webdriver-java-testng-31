@@ -20,6 +20,7 @@ public class Topic_15_Alert {
         driver.manage().window().maximize();
 
     }
+
     @Test
     public void TC_01_JS_Alert() throws InterruptedException {
         driver.get("https://automationfc.github.io/basic-form/index.html");
@@ -28,7 +29,7 @@ public class Topic_15_Alert {
         driver.findElement(By.xpath("//button[text()='Click for JS Alert']")).click();
         Thread.sleep(2000);
 
-        Assert.assertEquals(driver.switchTo().alert().getText(),"I am a JS Alert");
+        Assert.assertEquals(driver.switchTo().alert().getText(), "I am a JS Alert");
 
         driver.switchTo().alert().accept();
         Thread.sleep(2000);
@@ -45,7 +46,7 @@ public class Topic_15_Alert {
         driver.findElement(By.xpath("//button[text()='Click for JS Confirm']")).click();
         Thread.sleep(2000);
 
-        Assert.assertEquals(driver.switchTo().alert().getText(),"I am a JS Confirm");
+        Assert.assertEquals(driver.switchTo().alert().getText(), "I am a JS Confirm");
 
         driver.switchTo().alert().dismiss();
         Thread.sleep(2000);
@@ -64,17 +65,46 @@ public class Topic_15_Alert {
         driver.findElement(By.xpath("//button[text()='Click for JS Prompt']")).click();
         Thread.sleep(2000);
 
-        Assert.assertEquals(driver.switchTo().alert().getText(),"I am a JS prompt");
+        Assert.assertEquals(driver.switchTo().alert().getText(), "I am a JS prompt");
 
         driver.switchTo().alert().sendKeys(text);
         driver.switchTo().alert().accept();
         Thread.sleep(2000);
 
-        Assert.assertEquals(driver.findElement(By.cssSelector("p#result")).getText(), "You entered: " + text );
+        Assert.assertEquals(driver.findElement(By.cssSelector("p#result")).getText(), "You entered: " + text);
     }
 
+    @Test
+    public void TC_04_Authentication_Alert() throws InterruptedException {
+        driver.get("https://admin:admin@the-internet.herokuapp.com/basic_auth");
+        Thread.sleep(2000);
+
+        Assert.assertEquals(driver.findElement(By.cssSelector("div.example p")).getText(), "Congratulations! You must have the proper credentials.");
+    }
+
+    @Test
+    public void TC_05_Authentication_Alert_II() throws InterruptedException {
+        driver.get("https://the-internet.herokuapp.com/");
+        Thread.sleep(2000);
+
+        String username = "admin";
+        String password = "admin";
+
+        String url = driver.findElement(By.xpath("//li/a[text()='Basic Auth']")).getDomProperty("href");
+        System.out.println(url);
+
+        String[] array = url.split("//");
+
+        System.out.println(array[0] + " " + array[1]);
+        driver.get(array[0]+"//"+username+":"+password+"@"+array[1]);
+        Thread.sleep(2000);
+
+        Assert.assertEquals(driver.findElement(By.cssSelector("div.example p")).getText(), "Congratulations! You must have the proper credentials.");
+    }
+
+
     @AfterClass
-    public void afterClass(){
+    public void afterClass() {
         driver.quit();
     }
 }
