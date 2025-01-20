@@ -1,5 +1,6 @@
 package webdriver;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
@@ -10,31 +11,37 @@ import java.util.concurrent.TimeUnit;
 
 public class Topic_22_JavascriptExecutor {
     WebDriver driver;
+    JavascriptExecutor jsExecutor;
 
     @BeforeClass
     public void initialBrowser() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-
-    }
-    @Test
-    public void TC_01(){
+        jsExecutor = (JavascriptExecutor) driver;
 
     }
 
     @Test
-    public void TC_02(){
+    public void TC_01() throws InterruptedException {
+        jsExecutor.executeScript("window.location='https://live.techpanda.org/'");
+        Thread.sleep(2000);
+
+        System.out.println(jsExecutor.executeScript("return document.domain"));
+    }
+
+    @Test
+    public void TC_02() {
 
     }
 
     @Test
-    public void TC_03(){
+    public void TC_03() {
 
     }
 
     @AfterClass
-    public void cleanBrowser(){
+    public void cleanBrowser() {
         driver.quit();
     }
 
