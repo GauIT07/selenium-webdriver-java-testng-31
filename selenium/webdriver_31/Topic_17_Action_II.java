@@ -84,7 +84,7 @@ public class Topic_17_Action_II {
         Thread.sleep(3000);
 
         By doubleClickButton = By.xpath("//button[text()='Double click me']");
-          
+
         if (driver.toString().contains("Firefox")) {
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(doubleClickButton));
             Thread.sleep(2000);
@@ -96,6 +96,33 @@ public class Topic_17_Action_II {
 
         Assert.assertEquals(driver.findElement(By.cssSelector("p#demo")).getText(), "Hello Automation Guys!");
 
+    }
+
+    @Test
+    public void TC_04_RightClick() throws InterruptedException {
+        driver.get("https://swisnl.github.io/jQuery-contextMenu/demo.html");
+        Thread.sleep(1000);
+
+        By rightClickMeButton = By.xpath("//p/span[text()='right click me']");
+
+        action.contextClick(driver.findElement(rightClickMeButton)).perform();
+        Thread.sleep(2000);
+
+        Assert.assertTrue(driver.findElement(By.cssSelector("ul.context-menu-list")).isDisplayed());
+
+        action.moveToElement(driver.findElement(By.xpath("//span[text()='Quit']"))).perform();
+        Thread.sleep(1000);
+
+        Assert.assertTrue(driver.findElement(By.xpath("//span[text()='Quit']/parent::li")).getAttribute("class").contains("context-menu-visible"));
+        Assert.assertTrue(driver.findElement(By.xpath("//span[text()='Quit']/parent::li")).getAttribute("class").contains("context-menu-hover"));
+
+        action.click(driver.findElement(By.xpath("//span[text()='Quit']"))).perform();
+        Thread.sleep(1000);
+
+        driver.switchTo().alert().accept();
+        Thread.sleep(1000);
+
+        Assert.assertFalse(driver.findElement(By.cssSelector("ul.context-menu-list")).isDisplayed());
     }
 
     @AfterClass
