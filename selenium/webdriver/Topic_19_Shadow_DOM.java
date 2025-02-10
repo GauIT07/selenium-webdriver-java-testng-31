@@ -47,7 +47,6 @@ public class Topic_19_Shadow_DOM {
 
         SearchContext shadowRootChildren = shadowRoot.findElement(By.cssSelector("div#nested_shadow_host")).getShadowRoot();
         Assert.assertEquals(shadowRootChildren.findElement(By.cssSelector("div#nested_shadow_content>div")).getText(), "nested text");
-
     }
 
     @Test

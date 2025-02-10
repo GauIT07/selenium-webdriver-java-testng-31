@@ -24,7 +24,7 @@ public class Topic_22_JavascriptExecutor {
 
     @Test
     public void TC_01() throws InterruptedException {
-        jsExecutor.executeScript("window.location='https://live.techpanda.org/'");
+        jsExecutor.executeScript(" window.location='https://live.techpanda.org/'");
         Thread.sleep(2000);
 
         System.out.println(jsExecutor.executeScript("return document.domain"));
